@@ -133,7 +133,8 @@ class FooterResource extends Resource
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Logo')
                     ->disk('public')
-                    ->height(50),
+                    ->height(50)
+                    ->circular(),
 
                 Tables\Columns\TextColumn::make('alamat')
                     ->label('Alamat')
