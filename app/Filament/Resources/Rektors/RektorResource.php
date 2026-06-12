@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Rektors;
 
-use App\Filament\Resources\RektorResource\Pages;
+use App\Filament\Resources\Rektors\Pages\CreateRektor;
+use App\Filament\Resources\Rektors\Pages\EditRektor;
+use App\Filament\Resources\Rektors\Pages\ListRektors;
+use App\Filament\Resources\Rektors\Pages\ViewRektor;
 use App\Models\Rektor;
 use BackedEnum;
-use UnitEnum;
+use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class RektorResource extends Resource
 {
@@ -93,12 +97,12 @@ class RektorResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->defaultSort('id', 'asc');
@@ -112,9 +116,9 @@ class RektorResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListRektors::route('/'),
-            'create' => Pages\CreateRektor::route('/create'),
-            'edit' => Pages\EditRektor::route('/{record}/edit'),
+            'index' => ListRektors::route('/'),
+            'create' => CreateRektor::route('/create'),
+            'edit' => EditRektor::route('/{record}/edit'),
         ];
     }
 }

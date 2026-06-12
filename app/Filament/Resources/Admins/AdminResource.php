@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Admins;
 
-use App\Filament\Resources\AdminResource\Pages;
+use App\Filament\Resources\Admins\Pages\CreateAdmin;
+use App\Filament\Resources\Admins\Pages\EditAdmin;
+use App\Filament\Resources\Admins\Pages\ListAdmins;
+use App\Filament\Resources\Admins\Pages\ViewAdmin;
 use App\Models\Admin;
 use BackedEnum;
-use UnitEnum;
+use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class AdminResource extends Resource
 {
@@ -98,12 +102,12 @@ class AdminResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->defaultSort('nama', 'asc');
@@ -117,9 +121,9 @@ class AdminResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListAdmins::route('/'),
-            'create' => Pages\CreateAdmin::route('/create'),
-            'edit' => Pages\EditAdmin::route('/{record}/edit'),
+            'index' => ListAdmins::route('/'),
+            'create' => CreateAdmin::route('/create'),
+            'edit' => EditAdmin::route('/{record}/edit'),
         ];
     }
 }

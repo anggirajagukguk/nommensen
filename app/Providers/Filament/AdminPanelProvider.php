@@ -40,6 +40,8 @@ class AdminPanelProvider extends PanelProvider
                 'Profil Universitas',
                 'Publikasi',
                 'Manajemen Konten',
+                'Manajemen SDM',
+                'Pengaturan',
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([

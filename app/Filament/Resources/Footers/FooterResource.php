@@ -1,16 +1,21 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Footers;
 
-use App\Filament\Resources\FooterResource\Pages;
+use App\Filament\Resources\Footers\Pages\CreateFooter;
+use App\Filament\Resources\Footers\Pages\EditFooter;
+use App\Filament\Resources\Footers\Pages\ListFooters;
+use App\Filament\Resources\Footers\Pages\ViewFooter;
 use App\Models\Footer;
 use BackedEnum;
-use UnitEnum;
+use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class FooterResource extends Resource
 {
@@ -27,7 +32,7 @@ class FooterResource extends Resource
     {
         return $schema
             ->components([
-                Forms\Components\Section::make('Identitas & Lokasi')
+                Section::make('Identitas & Lokasi')
                     ->description('Logo, alamat, dan peta lokasi yang ditampilkan di footer website.')
                     ->icon('heroicon-o-map-pin')
                     ->schema([
@@ -59,7 +64,7 @@ class FooterResource extends Resource
                             ->columnSpanFull(),
                     ]),
 
-                Forms\Components\Section::make('Kontak Resmi')
+                Section::make('Kontak Resmi')
                     ->description('Email dan nomor WhatsApp yang bisa dihubungi pengunjung website.')
                     ->icon('heroicon-o-phone')
                     ->schema([
@@ -81,7 +86,7 @@ class FooterResource extends Resource
                     ])
                     ->columns(2),
 
-                Forms\Components\Section::make('Sosial Media')
+                Section::make('Sosial Media')
                     ->description('Link akun resmi universitas di berbagai platform sosial media.')
                     ->icon('heroicon-o-globe-alt')
                     ->schema([
@@ -166,12 +171,12 @@ class FooterResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->defaultSort('updated_at', 'desc');
@@ -185,9 +190,9 @@ class FooterResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListFooters::route('/'),
-            'create' => Pages\CreateFooter::route('/create'),
-            'edit' => Pages\EditFooter::route('/{record}/edit'),
+            'index' => ListFooters::route('/'),
+            'create' => CreateFooter::route('/create'),
+            'edit' => EditFooter::route('/{record}/edit'),
         ];
     }
 }

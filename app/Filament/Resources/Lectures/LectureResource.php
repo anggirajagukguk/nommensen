@@ -1,16 +1,20 @@
 <?php
 
-namespace App\Filament\Resources;
+namespace App\Filament\Resources\Lectures;
 
-use App\Filament\Resources\LectureResource\Pages;
+use App\Filament\Resources\Lectures\Pages\CreateLecture;
+use App\Filament\Resources\Lectures\Pages\EditLecture;
+use App\Filament\Resources\Lectures\Pages\ListLectures;
+use App\Filament\Resources\Lectures\Pages\ViewLecture;
 use App\Models\Lecture;
 use BackedEnum;
-use UnitEnum;
+use Filament\Actions;
 use Filament\Forms;
 use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Tables;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class LectureResource extends Resource
 {
@@ -141,12 +145,12 @@ class LectureResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Actions\EditAction::make(),
+                Actions\DeleteAction::make(),
             ])
             ->bulkActions([
-                Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Actions\BulkActionGroup::make([
+                    Actions\DeleteBulkAction::make(),
                 ]),
             ])
             ->defaultSort('nama', 'asc');
@@ -160,9 +164,9 @@ class LectureResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListLectures::route('/'),
-            'create' => Pages\CreateLecture::route('/create'),
-            'edit' => Pages\EditLecture::route('/{record}/edit'),
+            'index' => ListLectures::route('/'),
+            'create' => CreateLecture::route('/create'),
+            'edit' => EditLecture::route('/{record}/edit'),
         ];
     }
 }
