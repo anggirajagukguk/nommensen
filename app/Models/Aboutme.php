@@ -10,7 +10,7 @@ class Aboutme extends Model
         'content',
         'image',
     ];
-
+ 
     protected $casts = [
         'image' => 'array',
     ];
