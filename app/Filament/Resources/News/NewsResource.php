@@ -77,7 +77,8 @@ class NewsResource extends Resource
                 Tables\Columns\ImageColumn::make('image')
                     ->label('Foto')
                     ->disk('public')
-                    ->height(60),
+                    ->height(60)
+                    ->circular(),
 
                 Tables\Columns\TextColumn::make('title')
                     ->label('Judul')
