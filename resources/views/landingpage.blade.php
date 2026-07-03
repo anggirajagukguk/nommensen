@@ -1,4 +1,4 @@
-@extends('layouts.app')
+﻿@extends('layouts.app')
 
 @section('title', 'Beranda')
 @section('meta_description', 'Selamat datang di B University — universitas vokasi unggul di Pematangsiantar.')
